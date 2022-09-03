@@ -211,5 +211,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-/MLModels/BoolQModel/pytorch_model.bin
-/MLModels/ParaModel/pytorch_model.bin
+/data/mlmodels/boolq/pytorch_model.bin
+/data/mlmodels/para/pytorch_model.bin
