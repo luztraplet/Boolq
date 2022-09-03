@@ -1,0 +1,76 @@
+.card a {
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  cursor: pointer;
+}
+
+.min-vh-50 {
+  min-height: 50vh !important;
+}
+
+.min-vh-10 {
+min-height: 10vh !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .min-vh-10 {
+  min-height: 3vh !important;
+  }
+}
+
+
+.chat-card {
+  width: auto !important;
+  height: auto !important;
+  max-width: 65% !important;
+  border-radius: 2rem !important;
+  min-width: 58px !important;
+  text-align: center !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .chat-card {
+      width: auto !important;
+      height: auto !important;
+      max-width: 85% !important;
+      border-radius: 2rem !important;
+      min-width: 58px !important;
+      text-align: center !important;
+    }
+}
+
+.user-card {
+  float: right;
+}
+
+.bot-card {
+  float: left;
+}
+
+.input-border-custom {
+  border-radius: 40px !important;
+  padding-right: 1.5rem;
+}
+
+.button-border-custom {
+  border-radius: 40px !important;
+  transform: translateX(calc(-100% - 0px));
+  z-index: 3 !important;
+}
+
+.p-custom {
+  padding-left: calc(12px + 1rem) !important;
+  padding-right: calc(12px + 1rem) !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .w-75 {
+    width: 100% !important;
+  }
+}
