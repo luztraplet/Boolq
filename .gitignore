@@ -214,3 +214,4 @@ cython_debug/
 /data/mlmodels/boolq/pytorch_model.bin
 /data/mlmodels/para/pytorch_model.bin
 log.txt
+cronlog.txt
