@@ -155,6 +155,12 @@ content = html.Div(
     ]
 )
 
+footer = html.Div(
+    [
+        dcc.Link("Source code", href="https://github.com/luztraplet/Boolq", target="blank"),
+    ], className="text-center my-5"
+)
+
 
 def add_layout(app):
     app.layout = dbc.Container(
@@ -162,6 +168,7 @@ def add_layout(app):
             header,
             content,
             disclaimer,
+            footer,
             dcc.Store(id='storage'),
             html.Div(id="garbage-output"),
             html.Div(id="garbage-input"),
