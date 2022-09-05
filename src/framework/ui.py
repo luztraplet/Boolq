@@ -1,36 +1,86 @@
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, dcc
 
 from src.domain.stories import stories
 
 disclaimer = dbc.Modal(
     [
         dbc.ModalHeader(
-            dbc.ModalTitle("Disclaimer"), close_button=False
+            dbc.ModalTitle("Terms and Conditions"), close_button=False
         ),
         dbc.ModalBody(
-            """Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
-
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.   
-
-Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.   
-
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo"""
-        , tag="H4"),
+            [
+                html.A(
+                    """The user should be aware that systems with generative language
+                    capabilities may produce offensive or
+                    misinforming content, and could be potentially misused. This has been
+                    reported in the literature.
+                    Our model does not filter in real-time any of the input text (prompts)
+                    thus cannot exclude the
+                    generation of offensive or misinforming results. We do not endorse and
+                    are not responsible for any
+                    outputs produced by the model."""
+                ),
+                html.Br(),
+                html.Br(),
+                html.A(
+                    """This site is provided on an as-is and as-available basis. You agree
+                    that your use of the site and
+                    our services will be at your sole risk. To the fullest extent
+                    permitted by law, we disclaim all
+                    warranties, express or implied, in connection with the site and your
+                    use thereof, including, without
+                    limitation, the implied warranties of merchantability, fitness for a
+                    particular purpose, and
+                    non-infringement. We make no warranties or representations about the
+                    accuracy or completeness of the
+                    site’s content or the content of any websites linked to the site and
+                    we will assume no liability or
+                    responsibility for any (1) errors, mistakes, or inaccuracies of
+                    content and materials, (2) personal
+                    injury or property damage, of any nature whatsoever, resulting from
+                    your access to and use of the
+                    site, (3) any unauthorized access to or use of our secure servers
+                    and/or any and all personal
+                    information and/or financial information stored therein, (4) any
+                    interruption or cessation of
+                    transmission to or from the site, (5) any bugs, viruses, trojan
+                    horses, or the like which may be
+                    transmitted to or through the site by any third party, and/or (6) any
+                    errors or omissions in any
+                    content and materials or for any loss or damage of any kind incurred
+                    as a result of the use of any
+                    content posted, transmitted, or otherwise made available via the site.
+                    We do not warrant, endorse,
+                    guarantee, or assume responsibility for any product or service
+                    advertised or offered by a third party
+                    through the site, any hyperlinked website, or any website or mobile
+                    application featured in any banner
+                    or other advertising, and we will not be a party to or in any way be
+                    responsible for monitoring any
+                    transaction between you and any third-party providers of products or
+                    services. As with the purchase
+                    of a product or service through any medium or in any environment, you
+                    should use your best judgment
+                    and exercise caution where appropriate."""
+                ),
+                html.Br(),
+                html.Br(),
+                html.A(
+                    """In no event will we be liable to you or any third party for any
+                    direct, indirect, consequential,
+                    exemplary, incidental, special, or punitive damages, including lost
+                    profit, lost revenue, loss of
+                    data, or other damages arising from your use of the site, even if we
+                    have been advised of the
+                    possibility of such damages. Notwithstanding anything to the contrary
+                    contained herein, our liability
+                    to you for any cause whatsoever and regardless of the form of the
+                    action, will at all times be
+                    limited to the lesser of the amount paid, if any, by you to us or CHF
+                    one Swiss Franc."""
+                )
+            ]),
         dbc.ModalFooter(dbc.Button("I agree", id="modal-close")),
     ],
     size="xl",
@@ -104,3 +154,16 @@ content = html.Div(
         html.Div(className="min-vh-10", id="scroll")
     ]
 )
+
+
+def add_layout(app):
+    app.layout = dbc.Container(
+        [
+            header,
+            content,
+            disclaimer,
+            dcc.Store(id='storage'),
+            html.Div(id="garbage-output"),
+            html.Div(id="garbage-input"),
+        ]
+    )
