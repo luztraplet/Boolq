@@ -11,7 +11,7 @@ from transformers import RobertaForSequenceClassification, RobertaTokenizer, Ber
 from src.domain.models import boolq_model, para_model, is_solution, predict
 from src.domain.stories import stories
 from src.framework.ui import getChatBubble
-from src.framework.ui import header, content, footer
+from src.framework.ui import header, content, disclaimer
 
 app = Dash(__name__,
            update_title='Loading models...',
@@ -26,7 +26,7 @@ app.layout = dbc.Container(
     [
         header,
         content,
-        footer,
+        disclaimer,
         dcc.Store(id='storage'),
         html.Div(id="garbage-output"),
         html.Div(id="garbage-input"),
@@ -45,6 +45,18 @@ app.clientside_callback(
     [Input('chat-content', 'children')],
     [State('scroll', 'id')]
 )
+
+
+@app.callback(
+    Output("modal", "is_open"),
+    [Input("garbage-input", "children"), Input("modal-close", "n_clicks")],
+    [State("modal", "is_open")],
+)
+def toggle_modal(_, __, ___):
+    ctx = dash.callback_context.triggered[0]['prop_id']
+    if ctx == "modal-close" + ".n_clicks":
+        return False
+    return True
 
 
 @app.callback(
@@ -110,4 +122,5 @@ def update_output_div(_, __, ___, story, input, chat, storage):
 
 
 if __name__ == "__main__":
-    app.run_server(host="0.0.0.0")
+    # app.run_server(host="0.0.0.0")
+    app.run_server(debug=True)
