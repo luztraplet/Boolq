@@ -1,11 +1,8 @@
 import dash.exceptions
 from dash import Output, Input, State
-from transformers import RobertaForSequenceClassification, RobertaTokenizer, BertForSequenceClassification, \
-    BertTokenizer
 
-from src.domain.models import boolq_model, para_model, is_solution, predict
-from src.domain.stories import stories
-from src.framework.ui import getChatBubble
+from src.domain.models import is_solution, predict
+from src.framework.ui import get_chat_bubble
 
 
 def add_callbacks(app):
@@ -34,23 +31,6 @@ def add_callbacks(app):
         return True
 
     @app.callback(
-        Output('update', 'disabled'),
-        Input('garbage-input', 'children'),
-    )
-    def model_callback(_):
-        if all([boolq_model['model'] is not None, boolq_model['tokenizer'] is not None, para_model['model'] is not None,
-                para_model['model'] is not None]):
-            return False
-
-        boolq_model['tokenizer'] = RobertaTokenizer.from_pretrained(boolq_model['token_path'])
-        boolq_model['model'] = RobertaForSequenceClassification.from_pretrained(boolq_model['model_path'])
-
-        para_model['tokenizer'] = BertTokenizer.from_pretrained(para_model['token_path'])
-        para_model['model'] = BertForSequenceClassification.from_pretrained(para_model['model_path'])
-
-        return False
-
-    @app.callback(
         Output('chat-content', 'children'),
         Output('input', 'value'),
         Output('storage', 'data'),
@@ -66,14 +46,15 @@ def add_callbacks(app):
         ctx = dash.callback_context.triggered[0]['prop_id']
 
         story = int(story)
+        stories = app.stories
         if ctx == "update" + ".n_clicks":
             return [
-                       getChatBubble(
+                       get_chat_bubble(
                            f"I am a RoBERTa base model finetuned on the BoolQ dataset.",
                            False),
-                       getChatBubble(f"Ask me yes-no questions about the following story to find out what happened.",
-                                     False),
-                       getChatBubble(stories[story]['question'], False)
+                       get_chat_bubble(f"Ask me yes-no questions about the following story to find out what happened.",
+                                       False),
+                       get_chat_bubble(stories[story]['question'], False)
                    ], None, {"story": story}
 
         if ctx == "send" + ".n_clicks" or ctx == "input" + ".n_submit":
@@ -81,14 +62,19 @@ def add_callbacks(app):
                 raise dash.exceptions.PreventUpdate
             if not input.strip() or not chat:
                 raise dash.exceptions.PreventUpdate
+
+            boolq_model, para_model = app.models
+
             if not all([boolq_model['model'] is not None, boolq_model['tokenizer'] is not None,
                         para_model['model'] is not None, para_model['model'] is not None]):
                 raise dash.exceptions.PreventUpdate
-            if is_solution(input, stories[storage['story']]['solution']):
-                return chat + [getChatBubble(input, True),
-                               getChatBubble("Yes! Well done, this is the solution.", False)], None, dash.no_update
-            return chat + [getChatBubble(input, True),
-                           getChatBubble(
-                               predict(input, stories[storage['story']]['passage']), False)], None, dash.no_update
+
+            if is_solution(para_model, input, stories[storage['story']]['solution']):
+                return chat + [get_chat_bubble(input, True),
+                               get_chat_bubble("Yes! Well done, this is the solution.", False)], None, dash.no_update
+            return chat + [get_chat_bubble(input, True),
+                           get_chat_bubble(
+                               predict(boolq_model, input, stories[storage['story']]['passage']),
+                               False)], None, dash.no_update
 
         raise dash.exceptions.PreventUpdate()
