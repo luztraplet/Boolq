@@ -22,4 +22,4 @@ add_callbacks(app)
 app.models = load_models()
 
 if __name__ == "__main__":
-    app.run_server(host="0.0.0.0")
+    app.run_server(host="127.0.0.1")
