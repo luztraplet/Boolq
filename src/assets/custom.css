@@ -52,7 +52,7 @@ min-height: 10vh !important;
 
 .input-border-custom {
   border-radius: 40px !important;
-  padding-right: 1.5rem;
+  padding-right: 3.75rem !important;
 }
 
 .button-border-custom {
