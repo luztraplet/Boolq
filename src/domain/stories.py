@@ -1,3 +1,4 @@
+# load all 9 blackstories
 def load_stories():
     return [
         {

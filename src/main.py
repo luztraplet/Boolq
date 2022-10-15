@@ -7,6 +7,7 @@ from src.domain.stories import load_stories
 from src.framework.callbacks import add_callbacks
 from src.framework.ui import add_layout
 
+# instantiate dash app
 app = Dash(__name__,
            update_title='Loading models...',
            external_stylesheets=[os.path.join(".", "assets", "sandstone.css"),
@@ -16,10 +17,18 @@ app = Dash(__name__,
 
 server = app.server
 
+# add stories to app
 app.stories = load_stories()
+
+# add UI to app
 add_layout(app)
+
+# add callbacks to app
 add_callbacks(app)
+
+# add models to app
 app.models = load_models()
 
+# run app
 if __name__ == "__main__":
     app.run_server(host="127.0.0.1")

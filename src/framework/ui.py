@@ -2,6 +2,7 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc
 
 
+# create "terms and conditions" modal
 def create_disclaimer():
     return dbc.Modal(
         [
@@ -91,6 +92,7 @@ def create_disclaimer():
     )
 
 
+# create header
 def create_header():
     return html.Div(
         [
@@ -100,6 +102,7 @@ def create_header():
     )
 
 
+# create general chat bubble
 def get_chat_bubble(message, is_user):
     return dbc.Row(
         dbc.Card(
@@ -115,6 +118,7 @@ def get_chat_bubble(message, is_user):
     )
 
 
+# create main content of site
 def create_content(stories):
     return html.Div(
         [
@@ -159,6 +163,7 @@ def create_content(stories):
     )
 
 
+# create footer
 def create_footer():
     return html.Div(
         [
@@ -167,6 +172,7 @@ def create_footer():
     )
 
 
+# add all UI to site
 def add_layout(app):
     app.layout = dbc.Container(
         [
